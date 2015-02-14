@@ -3,6 +3,8 @@
 This is a simple Python scripts that (through inspection of [the API list][api-list]) should dynamically
 allow you to call **any** [WebAPI from Steam][webapi-docs] (available on api.steampowered.com.)
 
+It should be helpful for automation (think publishing builds from Jenkins, generating reports, etc), exploration (what operations / data do you have access to about your game), or manual moderation / administration.
+
 It supports both private (i.e. "partner") APIs and public APIs. Like the api.steampowered.com, it will
 **not list** any of the partner APIs unless you provide a valid publisher key. If you have a SteamWorks
 account, you can find out how to create one in the [SteamWorks documentation][publisherkey-docs].
@@ -11,6 +13,22 @@ account, you can find out how to create one in the [SteamWorks documentation][pu
 
 The only external dependency is the excellent [requests][requests] package for Python.
 You should be able to install however you install python libraries -- probably just `pip install requests`.
+
+## Commands that might be interesting
+
+Want to publish a build to a branch?
+
+    steamcli.py --key=$PUBLISHER_KEY call ISteamApps SetAppBuildLive --appid=$APPID --buildid=$BUILDID --betakey=public --description="Automatically published build"
+
+Trying to write an automated tool that verifies that a user owns your game on Steam before performing some kind of operation?
+
+    steamcli.py --raw --key=$PUBLISHER_KEY call ISteamUser CheckAppOwnership --steamid=$STEAMUSER --appid=$APPID
+
+Want to make some kind of automated report about the revenue of various workshop items?
+
+    steamcli.py --raw --key=$PUBLISHER_KEY call IWorkshopService GetItemDailyRevenue --appid=$APPID --item_id=$ITEMID --date_start=$FROM --date_end=$TO
+
+That should give you some ideas -- tons more operations are available!
 
 ## Example usage
 
