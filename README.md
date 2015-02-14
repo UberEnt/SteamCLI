@@ -3,7 +3,7 @@
 This is a simple Python scripts that (through inspection of [the API list][api-list]) should dynamically
 allow you to call **any** [WebAPI from Steam][webapi-docs] (available on api.steampowered.com.)
 
-It supports both private (i.e. `partner`) APIs and public APIs. Like the api.steampowered.com, it will
+It supports both private (i.e. "partner") APIs and public APIs. Like the api.steampowered.com, it will
 **not list** any of the partner APIs unless you provide a valid publisher key. If you have a SteamWorks
 account, you can find out how to create one in the [SteamWorks documentation][publisherkey-docs].
 
