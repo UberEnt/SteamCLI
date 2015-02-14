@@ -44,6 +44,9 @@ def argparser_for_method(prog, method):
     parser = argparse.ArgumentParser(prog=prog)
 
     for parameter in method['parameters']:
+        if parameter['name'] == 'key':
+            continue
+
         paramargs = {
             'type': PARAMETER_TYPEMAP[parameter['type']],
             'required': not parameter['optional'],
