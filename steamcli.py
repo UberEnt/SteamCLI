@@ -121,7 +121,11 @@ def list_commands(args):
                     mandatory_mark = '*'
                     if parameter['optional']:
                         mandatory_mark = ' '
-                    print '        %s %s %s: %s' % (mandatory_mark, parameter['type'], parameter['name'], parameter['description'])
+
+                    desc = '        %s %s %s' % (mandatory_mark, parameter['type'], parameter['name'])
+                    if 'description' in parameter:
+                        desc += ': %s' % (parameter['description'])
+                    print desc
 
     if args.interface:
         print '* = required argument'
